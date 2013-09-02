@@ -1,0 +1,136 @@
+Release Notes for LM Flash Programmer
+Version 2.0 - Initial Release of LM Flash Programmer.
+Version 2.5 - Added command line support.
+            - Fixed bug that prevented programming over serial port with some
+              of the new evaluation boards.
+Version 3.0 - Added ability to program over Ethernet using the Stellaris bootloader.
+            - Added a User Register programming utility.
+            - Divided utilities into two tabs: Flash Utilities and Other Utilities.
+Version 3.1 - Fixed a problem that occurs on some Windows Vista machines where the
+              application crashes while starting up.
+Version 3.2 - Added the LM3S3748 evaluation board to the Quickset
+              pull-down menu.
+            - Added the new crystal values supported in DustDevil to the Crystal
+              pull-down menu.
+            - Added support to debug port unlock for DustDevil and added prompts
+              for user to assert reset during the debug unlock procedure for Fury
+              and DustDevil.
+            - Fixed a problem that kept the debug port unlock utility from working
+              with the new '811 eval boards.
+            - Fixed a problem where the tab contents disappeared when the ESC key
+              was hit.
+Version 3.3 - Fixed bug that prevented uploading from working when using the
+              command line portion of the tool.
+            - Fixed bug that prevented programming larger binaries over the serial
+              port using the bootloader.
+            - Integrated new release of the debug library for faster operation.
+Version 3.4 - Fixed bug in the new debug library introduced in version 3.3 that
+              prevented programming of sandstorm class devices.
+            - Added proper return codes to command line portion of the tool.  0 is
+              returned on success, and 1 is returned on failure.
+Version 3.5 - Added Ethernet programming "magic packet" transmission to allow
+              automated update without the need for user intervention at the
+              target end (when apps are suitably coded to listen for the magic
+              packet and transfer control to the boot loader when it arrives).
+Build 654   - Removed tracking based on version number.  It is now tracked strictly
+              based on build number.
+            - Increased the number of COM ports in drop down menu from 25 to 100.
+            - Added the ability to reset the target after a program operation using
+              the serial interface.
+            - Fixed a problem that was caused by setting up the device to run from
+              the main oscillator but not allowing time for the main oscillator to
+              power up and settle.  This could cause problems if the main oscillator
+              was not already being used in the application running on the board.
+            - Fixed bug that prevented the GUI from starting on some Vista machines.
+            - Added a transfer size option when using the serial program interface.
+Build 718   - Added support for USB Device Firmware Upgrade programming.
+            - Grey out address boxes when the "Entire Flash" options are
+              checked in the Flash Utilities tab.
+            - Added baud rates of 230400 and 460800 to the drop-down menu when using
+              the Serial(UART) Interface.
+            - Added support to remember all settings based the interface selected.
+            - Fixed a problem for Dustdevil devices (EK-LM3S3748 board) that was
+              caused by setting up the device to run from the main oscillator but
+              not allowing enough time for the main oscillator to power up and
+              settle.  This problem is seen if the main oscillator was not being
+              used in the application running on the board.
+            - Fixed a problem that was seen when the software running on the device
+              configured the system clock based on the settings in RCC2.  Previous
+              versions of LMFlash only configured RCC.  Therefore the system clock
+              was not configured as expected by LMFlash.  The symptom was that the
+              programming operation would stall at 0%.
+            - Added a programming timeout so that it will not stall in the
+              programming loop if there is a problem.
+Build 749    - Fixed a problem with the UART interface seen when programming
+              large files.  The communication port read timeout parameters
+              are now modified based on the file size to program.  Larger
+              images require more flash pages to be erased and therefore need
+              a longer timeout period when waiting for the acknowledge from the
+              device after the erase completes.
+Build 757   - Bug fix for programming issues under certain conditions.
+Build 761   - Fixed a bug introduced by build 757 when programming sandstorm parts
+              (for example - EK-LM3S811).  Due to an update to the debug library,
+              the JTAG frequency must be reduced to <600K for sandstorm devices.
+              In the end, the programming of sandstorm devices is faster than in
+              previous releases even though the JTAG frequency has been reduced.
+Build 771   - Added STDOUT FIFO flushing when running LMFlash via the command line.
+              This was needed to improve the update rate of status information when
+              LMFlash is called from a script (in some cases).
+            - Added Tempest boards to Quick Set pull-down menu.
+Build 776   - Added Tempest to the Debug Port Unlock utility.
+Build 778   - Fixed a programming timeout issue on sandstorm devices in some cases.
+Build 814   - Added workaround for Tempest Rev B debug port unlock errata.
+            - Changed all branding to Texas Instruments instead of Luminary Micro.
+Build 825   - Added warning about user registers to tempest debug unlock.
+            - Added tempest debug unlock support to the command line.
+Build 923   - Added support for the code_red Red Probe interface.
+            - Added support for SWD to both the Red Probe and ICDI interfaces.
+Build 1135  - Fixed page erase bug for devices with memory sizes greater than
+              256K.
+            - Updated to support Tempest Rev C3 / Firestorm A1
+Build 1140  - Updated USB DFU support following changes in the lmdfu.dll library.
+Build 1154  - Fix bug introduced 1135 that affects access to RDK-IDM-L35.
+
+Build 1159  - Add code to reset PB7 to TRSTn mode (for devices that support the
+              TRSTn signal).
+            - Modify the device intialization/reset code based on the connected
+              device class/revision.
+
+Build 1184    - Changed default serial packet size from 76 to 60.
+
+Build 1213  - Additional modifications to init/reset code for new
+              class/revisions of silicon.
+
+Build 1218  - Update init/reset code for new class/revisions of silicon.
+
+Build 1292  - Update for new class/revisions of silicon.
+
+Build 1299  - Update for Stellaris ICDI on DK-LM3S9BN6.
+
+Build 1340  - Updated support for new Blizzard Class Silicon
+            - Updated support for Tempest C5 / Firestorm A2 Silicon
+            - Updated support for new Firestorm kits
+            - Updated support for new Blizzard kit
+
+Build 1347  - Additional update for new silicon.
+            - Corrected an error in a workaround for a Blizzard flash erratum.
+
+Build 1355  - Fixed bug in processing of the Debug Unlock command.
+            - Power down DAP on target device when connection is terminated.
+            - Additional corrections implemented for Blizzard flash erratum.
+            - Add support to update Stellaris ICDI firmware to latest version.
+
+Build 1361  - Updates to help file
+            - Minor update for Blizzard flash erratum (device recognition)
+
+Build 1368  - Corrected a resource freeing error which caused LMFlash not to be
+              able to recover from a failed program operation without being
+              closed and restarted.
+
+Build 1381  - Fix bug in command line erase/program operation to restore the
+              "erase necessary pages" operation.
+            - Clean up information text on Flash/Other Utilities tabs when
+              these tabs are not valid based on interface selected.
+            - Update to ICDI firmware:  Virtual COM port baud rate/line
+              settings configuration are now used to configure the UART0
+              settings for the connection between the ICDI and Target device.
