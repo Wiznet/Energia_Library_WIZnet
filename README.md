@@ -13,6 +13,22 @@ This library includes examples which Arduino supplies and drivers for W5100, W52
 4. Add bool() function to HardwareSerial.cpp and HardwareSerial.h
 
 Now, if you run Energia IDE, then you can see "Ethernet" section in Examples and many samples in that section.
-![Capture Image](https://github.com/Wiznet/Energia_Library_WIZnet/blob/master/Energia_Capture.jpg "Energia IDE")
+
+![Capture Image](Energia_Capture.jpg "Energia IDE")
+
+##How to connect WIZ550io to a new LaunchPad
+1. Pin map for SPI communication is defined in D:\energia-0101E0010\hardware\msp430\variants\launchpad_f5529\pins_energia.h
+2. Pin connection
+ 
+  | New Launch Pad | WIZ550io       |
+  |:--------------:|:--------------:|
+  |      3V3       |       VCC      |
+  |   P3.2 (SCLK)  |       SCLK     |
+  |   P2.7         |       SCS      |
+  |   GND          |       GND      |
+  |      RST       |      nRESET    |
+  |   P3.0 (MOSI)  |       MOSI     |
+  |   P3.1 (MISO)  |       MISO     |
+ 
 
 Thank you.
