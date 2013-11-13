@@ -30,5 +30,6 @@ Now, if you run Energia IDE, then you can see "Ethernet" section in Examples and
   |   P3.0 (MOSI)  |       MOSI     |
   |   P3.1 (MISO)  |       MISO     |
  
+![Capture Image](NewLaunchpad_WIZ550io.jpg "Pin connection")
 
 Thank you.
